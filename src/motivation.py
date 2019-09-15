@@ -22,7 +22,7 @@ def motivate(format_string, image_path):
     with open(os.path.join(dir_path, "..","data","quotes.txt")) as f:
         f = f.readlines()
         quote = random.choice(f).strip()
-        colors = [hex(random.randint(0,2**8)).strip("0x").zfill(2) for i in range(3)]
+        colors = [hex(random.randint(thresholds[i],2**8)).strip("0x").zfill(2) for i in range(3)]
         colorstring = "#" + colors[0] + colors[1] + colors[2]
 
         notify(quote, image_path)
