@@ -6,13 +6,13 @@ import argparse
 
 def polybar(args):
     thresholds = [25,20,30]
-    with open ("/home/joakim/Documents/Python/Motivation/quotes.txt","r") as f:
+    with open ("/home/joakim/Documents/Python/Motivation/data/quotes.txt","r") as f:
         f = f.readlines()
         quote = random.choice(f).strip()
         colors = [hex(random.randint(0,2**8)).strip("0x").zfill(2) for i in range(3)]
         colorstring = "#" + colors[0]+ colors[1]+ colors[2]
 
-        cmdlist = ["notify-send", quote, "-i", "/home/joakim/Documents/Python/Motivation/harvåd.png"]
+        cmdlist = ["notify-send", quote, "-i", "/home/joakim/Documents/Python/Motivation/assets/harvåd.png"]
         process = subprocess.Popen(cmdlist, stdout=subprocess.PIPE)
 
         _, _ = process.communicate()
@@ -21,13 +21,13 @@ def polybar(args):
 
 def xmobar(args):
     thresholds = [25,20,30]
-    with open ("/home/joakim/Documents/Python/Motivation/quotes.txt","r") as f:
+    with open ("/home/joakim/Documents/Python/Motivation/data/quotes.txt","r") as f:
         f = f.readlines()
         quote = random.choice(f).strip()
         colors = [hex(random.randint(thresholds[i],2**8)).strip("0x").zfill(2) for i in range(3)]
         colorstring = "#" + colors[0]+ colors[1]+ colors[2]
 
-        cmdlist = ["notify-send", quote, "-i", "/home/joakim/Documents/Python/Motivation/harvåd.png"]
+        cmdlist = ["notify-send", quote, "-i", "/home/joakim/Documents/Python/Motivation/assets/harvåd.png"]
         process = subprocess.Popen(cmdlist, stdout=subprocess.PIPE)
 
         _, _ = process.communicate()
