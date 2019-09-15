@@ -18,7 +18,7 @@ din egen liste hvis du er ei dåse.
 
 # I aksjon
 
-![aksjonsbilete](https://imgur.com/BnrHTH8)
+![aksjonsbilete](https://i.imgur.com/BnrHTH8.png)
 
 # How to
 
