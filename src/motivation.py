@@ -17,6 +17,7 @@ format_strings = {
     }
 
 thresholds = [25,20,30]
+
 bars = ["polybar","xmobar","windows","lemonbar","i3bar"]
 
 def notify(quote, image_path = None):
@@ -31,6 +32,8 @@ def notify(quote, image_path = None):
 def motivate(format_string, image_path = None, list_path = None):
     if(image_path == None):
         image_path = os.path.join(dir_path, "..","assets","harvåd.png")
+    elif(not os.path.isabs(image_path)):
+        image_path = os.path.abspath(image_path)
 
     if(list_path == None):
         list_path = os.path.join(dir_path, "..","data","quotes.txt")
@@ -62,5 +65,7 @@ if __name__ == "__main__":
             print("Could not determine which bar you're using and no bar was specified using --mode\nAborting")
             exit(1)
 
-
-    motivate(format_strings[args.mode])
+    motivate(
+            format_string = format_strings[args.mode],
+            image_path    = args.image_path,
+            list_path     = args.list)
