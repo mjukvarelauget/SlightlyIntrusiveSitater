@@ -41,10 +41,14 @@ def windows(args):
 
 
 if __name__ == "__main__":
+
     bars = ["polybar","xmobar","windows","lemonbar","i3bar"]
     parser =  argparse.ArgumentParser(description='what is this')
-    parser.add_argument('--mode', help='polybar/xmobar', type=str, choices=bars)
+    parser.add_argument('--mode', help='polybar/xmobar/windows/lemonbar/i3bar', type=str, choices=bars)
+    parser.add_argument('-i', '--image-path', help='notification icon path', type=str)
+    parser.add_argument('-l', '--list', help='quote list file path', type=str)
     args = parser.parse_args()
+
     if(args.mode == None):
         parent = psutil.Process(psutil.Process().ppid())
         if parent.name() in bars:
