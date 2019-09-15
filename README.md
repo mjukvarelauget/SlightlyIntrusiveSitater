@@ -16,6 +16,10 @@ din egen liste hvis du er ei dåse.
 - farget tekst
 - Utbyttbare sitatlister
 
+# I aksjon
+
+![aksjonsbilete](https://imgur.com/BnrHTH8)
+
 # How to
 
 ## Polybar
