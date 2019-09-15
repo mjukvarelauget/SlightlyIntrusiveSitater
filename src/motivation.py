@@ -3,6 +3,7 @@
 import random
 import subprocess
 import argparse
+import psutil
 
 def notify(quote, image_path = None):
     cmdlist = ["notify-send", quote, "-i", image_path]
@@ -41,8 +42,11 @@ if __name__ == "__main__":
     parser =  argparse.ArgumentParser(description='what is this')
     parser.add_argument('--mode', help='polybar/xmobar', type=str, choices=bars)
     args = parser.parse_args()
+    if(args.mode == None):
+        parent = psutil.Process(psutil.Process().ppid())
+        if parent.name() in bars:
+            args.mode = parent.name()
 
-    # print(args.mode)
     if args.mode == "polybar":
         polybar(args)
     elif args.mode == "xmobar":
