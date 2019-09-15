@@ -4,44 +4,42 @@ import random
 import subprocess
 import argparse
 
-def polybar(args):
+def notify(quote, image_path = None):
+    cmdlist = ["notify-send", quote, "-i", image_path]
+    if(image_path == None):
+        cmdlist = ["notify-send", quote]
+
+    process = subprocess.Popen(cmdlist, stdout=subprocess.PIPE)
+    _, _ = process.communicate()
+
+
+def motivate(format_string, image_path):
     thresholds = [25,20,30]
-    with open ("/home/joakim/Documents/Python/Motivation/data/quotes.txt","r") as f:
+    with open("/home/joakim/Documents/Python/Motivation/data/quotes.txt","r") as f:
         f = f.readlines()
         quote = random.choice(f).strip()
         colors = [hex(random.randint(0,2**8)).strip("0x").zfill(2) for i in range(3)]
-        colorstring = "#" + colors[0]+ colors[1]+ colors[2]
+        colorstring = "#" + colors[0] + colors[1] + colors[2]
 
-        cmdlist = ["notify-send", quote, "-i", "/home/joakim/Documents/Python/Motivation/assets/harvåd.png"]
-        process = subprocess.Popen(cmdlist, stdout=subprocess.PIPE)
+        notify(quote, image_path)
 
-        _, _ = process.communicate()
-        print(format("%%{F%s}%s"
+        print(format(format_string
             %(colorstring, quote)))
+
+def polybar(args):
+    motivate("%%{F%s}%s", "/home/joakim/Documents/Python/Motivation/assets/harvåd.png")
 
 def xmobar(args):
-    thresholds = [25,20,30]
-    with open ("/home/joakim/Documents/Python/Motivation/data/quotes.txt","r") as f:
-        f = f.readlines()
-        quote = random.choice(f).strip()
-        colors = [hex(random.randint(thresholds[i],2**8)).strip("0x").zfill(2) for i in range(3)]
-        colorstring = "#" + colors[0]+ colors[1]+ colors[2]
-
-        cmdlist = ["notify-send", quote, "-i", "/home/joakim/Documents/Python/Motivation/assets/harvåd.png"]
-        process = subprocess.Popen(cmdlist, stdout=subprocess.PIPE)
-
-        _, _ = process.communicate()
-        print(format("<fc=%s>%s</fc>"
-            %(colorstring, quote)))
+    motivate("<fc=%s>%s</fc>","/home/joakim/Documents/Python/Motivation/assets/harvåd.png")
 
 def windows(args):
     print("fuck you, not implemented yet")
 
 
 if __name__ == "__main__":
+    bars = ["polybar","xmobar","windows","lemonbar","i3bar"]
     parser =  argparse.ArgumentParser(description='what is this')
-    parser.add_argument('--mode', help='polybar/xmobar', type=str, choices=['polybar','xmobar',
-        'windows'], default='xmobar')
+    parser.add_argument('--mode', help='polybar/xmobar', type=str, choices=bars)
     args = parser.parse_args()
 
     # print(args.mode)
@@ -52,5 +50,5 @@ if __name__ == "__main__":
     elif args.mode == "windows":
         windows(args)
     else:
-        print("please specify which bar to use")
+        print("Could not determine which bar you're using and no bar was specified using --mode\nAborting")
 
