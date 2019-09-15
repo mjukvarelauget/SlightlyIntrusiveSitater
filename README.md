@@ -1,4 +1,4 @@
-# Slight Intrusive Sitater
+# Slightly Intrusive Sitater
 
 Savner du å bli kalt homse? Blir du ikke truet på livet for å ikke frikke nok tequils? Utvid din
 eksisterende toolbar med denne modulen, for å få velkjente gullkorn fra mjukvarelauget - eller fra
