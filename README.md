@@ -67,13 +67,13 @@ Eksempel på minimalt shellscript:
 ```
 INTERVAL=450
 
-Quotes() {
+Motivation() {
         QUOTESTRING=$(python3 /path/til/motivation.py --mode lemonbar)
         echo -n "$QUOTESTRING"
 }
 
 while true; do
-        echo "$(Quotes)"
+        echo "$(Motivation)"
         sleep $INTERVAL
 done
 ```
