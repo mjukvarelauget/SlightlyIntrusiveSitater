@@ -11,7 +11,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 format_strings = {
         "polybar"  : "%%{F%s}%s",
         "xmobar"   : "<fc=%s>%s</fc>",
-        "lemonbar" : "%s%s",
+        "lemonbar" : "%%{F%s}%s",
         "windows"  : "%s%s",
         "i3bar"    : "%s%s",
         "default"  : "%s%s"
