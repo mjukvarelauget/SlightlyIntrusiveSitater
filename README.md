@@ -22,6 +22,8 @@ din egen liste hvis du er ei dåse.
 
 # How to
 
+Klon dette repoet, deretter følg instruksjoner for ditt bruksområde.
+
 ## Polybar
 Legg til
 
@@ -54,3 +56,26 @@ Run Com "python" ["/path/til/motivation.py"] "motivation" 450
 i `commands`-listen til `Config`-objektet. Husk deretter å legge til `%motivation%` på ønsket sted i
 `template`-verdien. Igjen, kan tallet 450 endres for å sette ønsket frekvens.
 
+## Lemonbar
+Antar at du bruker et shell script for å mate input inn til lemonbar.\
+I shellscriptet, legg til en ny funksjon som kaller på `motivation.py`. Bruk så outputtet i lemonbar.
+
+Merk at du må spesifisere `lemonbar` ved bruk av `--mode` argumentet.
+
+Eksempel på minimalt shellscript:
+
+```
+INTERVAL=450
+
+Quotes() {
+        QUOTESTRING=$(python3 /path/til/motivation.py --mode lemonbar)
+        echo -n "$QUOTESTRING"
+}
+
+while true; do
+        echo "$(Quotes)"
+        sleep $INTERVAL
+done
+```
+
+som kjøres ved `sh /path/til/shellscript | lemonbar -p`
