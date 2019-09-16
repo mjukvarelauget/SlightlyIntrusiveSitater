@@ -9,9 +9,9 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 format_strings = {
-        "polybar"  : "%%{F%s}%s",
-        "xmobar"   : "<fc=%s>%s</fc>",
-        "lemonbar" : "%%{F%s}%s",
+        "polybar"  : "%%{F#%s}%s",
+        "xmobar"   : "<fc=#%s>%s</fc>",
+        "lemonbar" : "%%{F#%s}%s",
         "windows"  : "%s%s",
         "i3bar"    : "%s%s",
         "default"  : "%s%s"
@@ -32,14 +32,14 @@ def notify(quote, image_path = None):
 def determine_colors(color):
     if(color == None):
         colors = [hex(random.randint(thresholds[i],2**8)).strip("0x").zfill(2) for i in range(3)]
-        return '#' + colors[0] + colors[1] + colors[2]
+        return colors[0] + colors[1] + colors[2]
     else:
         color = color.split("0x")[-1]
         color = color.split("#")[-1]
         if(len(color) != 6):
             print("Wrong color format!\nAborting")
             exit(3)
-        return '#' + color
+        return color
 
 
 def motivate(format_string, color = None, no_color = False, image_path = None, list_path = None):
