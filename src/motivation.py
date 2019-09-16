@@ -35,6 +35,7 @@ def determine_colors(color):
         return '#' + colors[0] + colors[1] + colors[2]
     else:
         color = color.split("0x")[-1]
+        color = color.split("#")[-1]
         if(len(color) != 6):
             print("Wrong color format!\nAborting")
             exit(3)
