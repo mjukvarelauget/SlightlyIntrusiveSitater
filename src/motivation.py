@@ -74,12 +74,13 @@ def motivate(format_string,
 if __name__ == "__main__":
     parser =  argparse.ArgumentParser(description='what is this')
     parser.add_argument('--mode', help='/'.join(bars), type=str, choices=bars)
-    parser.add_argument('-i', '--image-path', help='notification icon path', type=str)
-    parser.add_argument('-l', '--list', help='quote list file path', type=str)
+    parser.add_argument('-i', '--image-path', help='notification icon path'      , type=str)
+    parser.add_argument('-l', '--list'      , help='quote list file path'        , type=str)
+
     parser.add_argument('-N', '--no-notify' , help='disable pop up notifications', action='store_true')
 
     color_group = parser.add_mutually_exclusive_group()
-    color_group.add_argument('-c', '--color', help='text color', type=str)
+    color_group.add_argument('-c', '--color'   , help='text color'      , type=str)
     color_group.add_argument('-n', '--no-color', help='no text coloring', action='store_true', default=False)
 
     args = parser.parse_args()
